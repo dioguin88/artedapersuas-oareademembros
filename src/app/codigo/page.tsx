@@ -85,7 +85,7 @@ export default function CodigoPage() {
                     <div className="space-y-2">
                         <Input
                             id="codigo"
-                            placeholder="ex: PERSUASAO-PRO-2025"
+                            placeholder="Digite o código de acesso recebido em seu E-Mail"
                             value={codigo}
                             onChange={(e) => setCodigo(e.target.value)}
                             disabled={loading}
