@@ -8,7 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Logo } from '@/components/icons';
 import { LoginForm } from '@/components/auth/login-form';
 import { SignupForm } from '@/components/auth/signup-form';
-import { GoogleSignInButton } from '@/components/auth/google-signin-button';
 
 export default function LoginPage() {
     const { user, loading } = useAuth();
@@ -42,17 +41,6 @@ export default function LoginPage() {
                         <SignupForm />
                     </TabsContent>
                 </Tabs>
-                <div className="relative my-6">
-                    <div className="absolute inset-0 flex items-center">
-                        <span className="w-full border-t" />
-                    </div>
-                    <div className="relative flex justify-center text-xs uppercase">
-                        <span className="bg-background px-2 text-muted-foreground">
-                            Ou continue com
-                        </span>
-                    </div>
-                </div>
-                <GoogleSignInButton />
             </CardContent>
         </Card>
     );
