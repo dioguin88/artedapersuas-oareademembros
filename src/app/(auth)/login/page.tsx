@@ -27,7 +27,7 @@ export default function LoginPage() {
                     <Logo className="h-12 w-12 text-primary" />
                 </div>
                 <CardTitle className="text-2xl font-headline">Bem Vindo A Arte da Persuasão</CardTitle>
-                <CardDescription>Sign in or create an account to continue</CardDescription>
+                <CardDescription>Entre ou Cadastre-se</CardDescription>
             </CardHeader>
             <CardContent>
                 <Tabs defaultValue="signin">
