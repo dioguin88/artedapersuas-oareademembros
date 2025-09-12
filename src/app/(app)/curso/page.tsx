@@ -58,7 +58,7 @@ export default function CursoPage() {
                         alt="Capa do Módulo 1"
                         width={1200}
                         height={338}
-                        className="w-full h-auto max-h-[338px] object-cover"
+                        className="w-full h-auto max-h-[338px] object-cover transition-transform duration-300 hover:scale-105"
                     />
                     <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="item-1" className="border-t-0">
@@ -84,7 +84,7 @@ export default function CursoPage() {
                     </Accordion>
                 </Card>
                 
-                <hr className="border-t border-muted/20" />
+                <hr className="border-t border-muted/20 my-6" />
 
                 <Card className="bg-card rounded-xl shadow-lg overflow-hidden">
                      <Image
@@ -92,7 +92,7 @@ export default function CursoPage() {
                         alt="Capa do Módulo Extra"
                         width={1200}
                         height={338}
-                        className="w-full h-auto max-h-[338px] object-cover"
+                        className="w-full h-auto max-h-[338px] object-cover transition-transform duration-300 hover:scale-105"
                     />
                      <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="item-extra" className="border-t-0">
@@ -106,7 +106,7 @@ export default function CursoPage() {
                     </Accordion>
                 </Card>
 
-                <hr className="border-t border-muted/20" />
+                <hr className="border-t border-muted/20 my-6" />
 
                 {userData?.acesso === 'pro' ? (
                     <div className="space-y-6">

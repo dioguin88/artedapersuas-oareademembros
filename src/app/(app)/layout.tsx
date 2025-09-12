@@ -5,6 +5,7 @@ import { usePathname, redirect } from 'next/navigation';
 import { useAuth } from '@/context/auth-context';
 import FullPageLoader from '@/components/full-page-loader';
 import Header from '@/components/header';
+import Footer from '@/components/footer';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
     const { user, userData, loading } = useAuth();
@@ -30,6 +31,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             <main className="flex-1">
                 {children}
             </main>
+            <Footer />
         </div>
     );
 }
