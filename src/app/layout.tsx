@@ -4,7 +4,7 @@ import { AuthProvider } from '@/context/auth-context';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'AccessAlly',
+  title: 'Arte da Persuasão',
   description: 'Seu hub de conteúdo exclusivo.',
 };
 
