@@ -49,7 +49,7 @@ export default function CursoPage() {
                         <Card className="overflow-hidden animate-in fade-in-50 duration-500">
                              <CardHeader>
                                 <CardTitle className="flex items-center gap-2"><Youtube className="text-primary"/> Módulo 2: Técnicas Avançadas</CardTitle>
-                            </Header>
+                            </CardHeader>
                             <CardContent>
                                <div className="aspect-video w-full overflow-hidden rounded-lg border">
                                     <iframe
