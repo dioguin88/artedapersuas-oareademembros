@@ -57,72 +57,79 @@ export default function CursoPage() {
                 )}
             </div>
 
-            <div className="mb-8">
-                <Image
-                    src="https://i.postimg.cc/FsjDnr0q/rea-de-Membros.png"
-                    alt="Capa do Módulo 1"
-                    width={1200}
-                    height={600}
-                    className="w-full h-auto rounded-lg object-cover"
-                />
-            </div>
-
-            <Accordion type="single" collapsible className="w-full space-y-6">
-                <AccordionItem value="item-1" className="border rounded-lg overflow-hidden">
-                    <AccordionTrigger className="p-6 bg-secondary/30 hover:no-underline">
-                        <CardTitle className="flex items-center gap-2 text-left"><Youtube className="text-primary" /> MÓDULO 1 – Introdução à Persuasão Mental</CardTitle>
-                    </AccordionTrigger>
-                    <AccordionContent className="p-0">
-                        <div className="divide-y divide-border border-t">
-                            {aulasModulo1.map((aula, index) => (
-                                <div key={index} className="p-6 grid gap-4 sm:grid-cols-[1fr_auto] items-start">
-                                    <div className="space-y-1">
-                                        <h3 className="font-semibold flex items-center gap-2"><Video size={16} /> {aula.title}</h3>
-                                        <p className="text-muted-foreground text-sm">{aula.description}</p>
+            <div className="space-y-8">
+                <Card className="overflow-hidden">
+                    <CardHeader className="p-0">
+                        <Image
+                            src="https://i.postimg.cc/FsjDnr0q/rea-de-Membros.png"
+                            alt="Capa do Módulo 1"
+                            width={1200}
+                            height={600}
+                            className="w-full h-auto object-cover"
+                        />
+                    </CardHeader>
+                    <CardContent className="p-0">
+                        <Accordion type="single" collapsible className="w-full">
+                            <AccordionItem value="item-1" className="border-0">
+                                <AccordionTrigger className="p-6 hover:no-underline">
+                                    <CardTitle className="flex items-center gap-2 text-left"><Youtube className="text-primary" /> MÓDULO 1 – Introdução à Persuasão Mental</CardTitle>
+                                </AccordionTrigger>
+                                <AccordionContent className="p-0">
+                                    <div className="divide-y divide-border border-t">
+                                        {aulasModulo1.map((aula, index) => (
+                                            <div key={index} className="p-6 grid gap-4 sm:grid-cols-[1fr_auto] items-start">
+                                                <div className="space-y-1">
+                                                    <h3 className="font-semibold flex items-center gap-2"><Video size={16} /> {aula.title}</h3>
+                                                    <p className="text-muted-foreground text-sm">{aula.description}</p>
+                                                </div>
+                                                <Button asChild variant="outline" size="sm">
+                                                    <a href={aula.link}>Assistir</a>
+                                                </Button>
+                                            </div>
+                                        ))}
                                     </div>
-                                    <Button asChild variant="outline" size="sm">
-                                        <a href={aula.link}>Assistir</a>
-                                    </Button>
-                                </div>
-                            ))}
-                        </div>
-                    </AccordionContent>
-                </AccordionItem>
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                    </CardContent>
+                </Card>
 
                 {userData?.acesso === 'pro' ? (
                     <>
-                        <AccordionItem value="item-2" className="border rounded-lg overflow-hidden">
-                            <AccordionTrigger className="p-6 bg-secondary/30 hover:no-underline">
-                                <CardTitle className="flex items-center gap-2 text-left"><Youtube className="text-primary" /> Módulo 2: Técnicas Avançadas</CardTitle>
-                            </AccordionTrigger>
-                            <AccordionContent>
-                                <div className="p-6">
-                                    <div className="aspect-video w-full overflow-hidden rounded-lg border flex items-center justify-center bg-muted">
-                                        <p className="text-muted-foreground">Em breve...</p>
-                                    </div>
-                                </div>
-                            </AccordionContent>
-                        </AccordionItem>
+                        <Card className="overflow-hidden">
+                            <CardContent className="p-0">
+                                <Accordion type="single" collapsible className="w-full">
+                                    <AccordionItem value="item-2" className="border-0">
+                                        <AccordionTrigger className="p-6 hover:no-underline" disabled>
+                                            <CardTitle className="flex items-center gap-2 text-left text-muted-foreground"><Youtube /> Módulo 2: Técnicas Avançadas</CardTitle>
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                            <div className="p-6 pt-0 text-center text-muted-foreground">Em breve...</div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                            </CardContent>
+                        </Card>
 
-                        <AccordionItem value="item-3" className="border rounded-lg overflow-hidden">
-                            <AccordionTrigger className="p-6 bg-secondary/30 hover:no-underline">
-                                <CardTitle className="flex items-center gap-2 text-left"><FileText className="text-primary" /> Módulo 3: Folha de Dicas Exclusiva</CardTitle>
-                            </AccordionTrigger>
-                            <AccordionContent>
-                                <div className="p-6">
-                                    <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border flex items-center justify-center bg-muted">
-                                        <p className="text-muted-foreground">Em breve...</p>
-                                    </div>
-                                </div>
-                            </AccordionContent>
-                        </AccordionItem>
+                        <Card className="overflow-hidden">
+                            <CardContent className="p-0">
+                                <Accordion type="single" collapsible className="w-full">
+                                    <AccordionItem value="item-3" className="border-0">
+                                        <AccordionTrigger className="p-6 hover:no-underline" disabled>
+                                            <CardTitle className="flex items-center gap-2 text-left text-muted-foreground"><FileText /> Módulo 3: Folha de Dicas Exclusiva</CardTitle>
+                                        </AccordionTrigger>
+                                        <AccordionContent>
+                                          <div className="p-6 pt-0 text-center text-muted-foreground">Em breve...</div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                            </CardContent>
+                        </Card>
                     </>
                 ) : (
-                    <div className="mt-8">
-                      <LockedContent />
-                    </div>
+                    <LockedContent />
                 )}
-            </Accordion>
+            </div>
         </div>
     );
 }
