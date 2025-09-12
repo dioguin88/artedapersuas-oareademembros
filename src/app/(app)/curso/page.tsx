@@ -88,7 +88,7 @@ export default function CursoPage() {
 
                 <Card className="bg-card rounded-xl shadow-lg overflow-hidden">
                      <Image
-                        src="https://i.postimg.cc/K8SCRp5X/Chat-GPT-Image-12-de-set-de-2025-20-38-00.png"
+                        src="https://i.postimg.cc/65JNvQ91/Untitled-design.jpg"
                         alt="Capa do Módulo Extra"
                         width={1200}
                         height={338}
