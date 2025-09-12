@@ -7,10 +7,10 @@ export default function UpsellPage() {
     const upsellImage = PlaceHolderImages.find(p => p.id === 'upsell-hero');
 
     const proFeatures = [
-        "Access to all current and future modules",
-        "Exclusive bonus content and resources",
-        "Downloadable materials and cheat sheets",
-        "Priority support from our team",
+        "Acesso a todos os módulos atuais e futuros",
+        "Conteúdo bônus e recursos exclusivos",
+        "Materiais para download e folhas de dicas",
+        "Suporte prioritário da nossa equipe",
     ];
 
     return (
@@ -30,15 +30,15 @@ export default function UpsellPage() {
                 )}
                
                 <div className="space-y-4 text-center">
-                    <h1 className="text-4xl lg:text-5xl font-bold font-headline tracking-tighter text-primary">Go PRO and Unlock Everything</h1>
+                    <h1 className="text-4xl lg:text-5xl font-bold font-headline tracking-tighter text-primary">Seja PRO e Desbloqueie Tudo</h1>
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Your 'Teste' access is just the beginning. Upgrade to PRO to get the complete experience and accelerate your results.
+                        Seu acesso 'Teste' é apenas o começo. Faça o upgrade para PRO para ter a experiência completa e acelerar seus resultados.
                     </p>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-6 items-start">
                     <div className="space-y-4">
-                        <h3 className="text-2xl font-bold">What You'll Get:</h3>
+                        <h3 className="text-2xl font-bold">O Que Você Vai Receber:</h3>
                         <ul className="space-y-3">
                             {proFeatures.map((feature, index) => (
                                 <li key={index} className="flex items-start gap-3">
@@ -50,13 +50,13 @@ export default function UpsellPage() {
                     </div>
                     
                     <div className="rounded-2xl border bg-secondary/30 p-8 text-center space-y-4">
-                        <h4 className="text-2xl font-bold">Limited Time Offer</h4>
-                        <p className="text-5xl font-bold tracking-tight text-primary">$97</p>
-                        <p className="text-muted-foreground">One-time payment. Lifetime access.</p>
+                        <h4 className="text-2xl font-bold">Oferta Por Tempo Limitado</h4>
+                        <p className="text-5xl font-bold tracking-tight text-primary">R$97</p>
+                        <p className="text-muted-foreground">Pagamento único. Acesso vitalício.</p>
                         <Button size="lg" className="w-full rounded-2xl text-lg py-6 hover:brightness-110 transition-all transform hover:scale-105">
                             {/* Replace with your actual payment link */}
                             <a href="#" target="_blank" rel="noopener noreferrer">
-                                Unlock Full Access Now
+                                Desbloquear Acesso Completo Agora
                             </a>
                         </Button>
                     </div>

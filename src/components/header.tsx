@@ -16,10 +16,10 @@ export default function Header() {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            toast({ title: 'Logged Out', description: 'You have been successfully logged out.' });
+            toast({ title: 'Sessão Encerrada', description: 'Você foi desconectado com sucesso.' });
             router.push('/login');
         } catch (error) {
-            toast({ variant: 'destructive', title: 'Logout Failed', description: 'Could not log you out. Please try again.' });
+            toast({ variant: 'destructive', title: 'Falha ao Sair', description: 'Não foi possível encerrar a sessão. Por favor, tente novamente.' });
         }
     };
 
@@ -32,7 +32,7 @@ export default function Header() {
                 </Link>
                 <Button variant="ghost" size="icon" onClick={handleLogout} className="rounded-full">
                     <LogOut className="h-4 w-4" />
-                    <span className="sr-only">Logout</span>
+                    <span className="sr-only">Sair</span>
                 </Button>
             </div>
         </header>

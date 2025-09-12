@@ -33,7 +33,7 @@ export default function CodigoPage() {
     const handleSaveCode = async () => {
         if (!user) return;
         if (!codigo) {
-            toast({ variant: 'destructive', title: 'Please enter a code.' });
+            toast({ variant: 'destructive', title: 'Por favor, insira um código.' });
             return;
         }
         setLoading(true);
@@ -44,7 +44,7 @@ export default function CodigoPage() {
         } else if (codigo.trim().toUpperCase() === 'TESTE') {
             acesso = 'teste';
         } else {
-            toast({ variant: 'destructive', title: 'Invalid Code', description: 'Please check your access code and try again.' });
+            toast({ variant: 'destructive', title: 'Código Inválido', description: 'Verifique seu código de acesso e tente novamente.' });
             setLoading(false);
             return;
         }
@@ -56,11 +56,11 @@ export default function CodigoPage() {
                 acesso,
             }, { merge: true });
 
-            toast({ title: 'Success!', description: 'Your access has been granted.' });
+            toast({ title: 'Sucesso!', description: 'Seu acesso foi concedido.' });
             router.push('/home');
         } catch (error) {
             console.error("Error saving code:", error);
-            toast({ variant: 'destructive', title: 'Error', description: 'Could not save your access level. Please try again.' });
+            toast({ variant: 'destructive', title: 'Erro', description: 'Não foi possível salvar seu nível de acesso. Por favor, tente novamente.' });
             setLoading(false);
         }
     };
@@ -76,21 +76,21 @@ export default function CodigoPage() {
                     <div className="mx-auto mb-4">
                         <Logo className="h-12 w-12 text-primary" />
                     </div>
-                    <CardTitle className="text-2xl font-headline">One Last Step</CardTitle>
-                    <CardDescription>Enter your access code to unlock your content.</CardDescription>
+                    <CardTitle className="text-2xl font-headline">Último Passo</CardTitle>
+                    <CardDescription>Insira seu código de acesso para desbloquear seu conteúdo.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="space-y-2">
                         <Input
                             id="codigo"
-                            placeholder="e.g., PRO"
+                            placeholder="ex: PRO"
                             value={codigo}
                             onChange={(e) => setCodigo(e.target.value)}
                             disabled={loading}
                         />
                     </div>
                     <Button onClick={handleSaveCode} className="w-full rounded-2xl hover:brightness-110 transition-all" disabled={loading}>
-                        {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Confirm Code'}
+                        {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Confirmar Código'}
                     </Button>
                 </CardContent>
             </Card>

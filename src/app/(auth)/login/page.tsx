@@ -32,8 +32,8 @@ export default function LoginPage() {
             <CardContent>
                 <Tabs defaultValue="signin">
                     <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="signin">Sign In</TabsTrigger>
-                        <TabsTrigger value="signup">Sign Up</TabsTrigger>
+                        <TabsTrigger value="signin">Entrar</TabsTrigger>
+                        <TabsTrigger value="signup">Cadastrar</TabsTrigger>
                     </TabsList>
                     <TabsContent value="signin">
                         <LoginForm />
@@ -48,7 +48,7 @@ export default function LoginPage() {
                     </div>
                     <div className="relative flex justify-center text-xs uppercase">
                         <span className="bg-background px-2 text-muted-foreground">
-                            Or continue with
+                            Ou continue com
                         </span>
                     </div>
                 </div>

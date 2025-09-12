@@ -10,15 +10,15 @@ export default function LockedContent() {
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent/20 mb-4">
                     <Lock className="h-6 w-6 text-accent-foreground" />
                 </div>
-                <CardTitle>Content Locked</CardTitle>
+                <CardTitle>Conteúdo Bloqueado</CardTitle>
                 <CardDescription className="text-accent-foreground/80">
-                    Upgrade your plan to unlock this module and get access to all exclusive PRO content.
+                    Atualize seu plano para desbloquear este módulo e ter acesso a todo o conteúdo PRO exclusivo.
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 <Button asChild variant="destructive" className="rounded-2xl hover:brightness-110 transition-all transform hover:scale-105">
                     <Link href="/upsell">
-                        Unlock PRO Access
+                        Desbloquear Acesso PRO
                     </Link>
                 </Button>
             </CardContent>

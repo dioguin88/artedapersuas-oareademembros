@@ -13,8 +13,8 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
-    email: z.string().email({ message: 'Please enter a valid email.' }),
-    password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
+    email: z.string().email({ message: 'Por favor, insira um email válido.' }),
+    password: z.string().min(6, { message: 'A senha deve ter pelo menos 6 caracteres.' }),
 });
 
 export function SignupForm() {
@@ -33,15 +33,15 @@ export function SignupForm() {
         try {
             await createUserWithEmailAndPassword(auth, values.email, values.password);
             toast({
-                title: 'Account Created',
-                description: "You've been successfully signed up!",
+                title: 'Conta Criada',
+                description: "Você foi cadastrado com sucesso!",
             });
         } catch (error: any) {
             console.error("Sign up error", error);
             toast({
                 variant: 'destructive',
-                title: 'Sign Up Failed',
-                description: error.message || 'An unknown error occurred.',
+                title: 'Falha no Cadastro',
+                description: error.message || 'Ocorreu um erro desconhecido.',
             });
         } finally {
             setLoading(false);
@@ -58,7 +58,7 @@ export function SignupForm() {
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="you@example.com" {...field} />
+                                <Input placeholder="voce@exemplo.com" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -69,7 +69,7 @@ export function SignupForm() {
                     name="password"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel>Senha</FormLabel>
                             <FormControl>
                                 <Input type="password" placeholder="••••••••" {...field} />
                             </FormControl>
@@ -78,7 +78,7 @@ export function SignupForm() {
                     )}
                 />
                 <Button type="submit" className="w-full rounded-2xl hover:brightness-110 transition-all" disabled={loading}>
-                    {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Create Account'}
+                    {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : 'Criar Conta'}
                 </Button>
             </form>
         </Form>
