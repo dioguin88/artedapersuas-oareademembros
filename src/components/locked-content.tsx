@@ -1,27 +1,17 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Lock } from 'lucide-react';
 
 export default function LockedContent() {
     return (
-        <Card className="bg-accent/10 border-accent/20 text-center animate-in fade-in-50 duration-500">
-            <CardHeader>
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent/20 mb-4">
-                    <Lock className="h-6 w-6 text-accent-foreground" />
-                </div>
-                <CardTitle>Conteúdo Bloqueado</CardTitle>
-                <CardDescription className="text-accent-foreground/80">
-                    Atualize seu plano para desbloquear este módulo e ter acesso a todo o conteúdo PRO exclusivo.
-                </CardDescription>
-            </CardHeader>
-            <CardContent>
-                <Button asChild variant="destructive" className="rounded-2xl hover:brightness-110 transition-all transform hover:scale-105">
-                    <Link href="/upsell">
-                        Desbloquear Acesso PRO
-                    </Link>
-                </Button>
-            </CardContent>
-        </Card>
+        <div className="bg-zinc-800 text-white rounded-xl p-6 text-center mt-10">
+            <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2"><Lock size={20} /> Conteúdo Exclusivo PRO</h3>
+            <p className="text-sm text-zinc-400 mb-4">Desbloqueie acesso completo a todos os módulos e materiais PRO.</p>
+            <Button asChild variant="destructive" className="bg-red-600 hover:bg-red-700">
+                <Link href="/upsell">
+                    Atualizar para PRO
+                </Link>
+            </Button>
+        </div>
     );
 }

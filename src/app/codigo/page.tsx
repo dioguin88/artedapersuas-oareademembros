@@ -9,9 +9,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2 } from 'lucide-react';
+import { Loader2, BrainCircuit } from 'lucide-react';
 import FullPageLoader from '@/components/full-page-loader';
-import { Logo } from '@/components/icons';
 
 export default function CodigoPage() {
     const { user, userData, loading: authLoading } = useAuth();
@@ -76,7 +75,7 @@ export default function CodigoPage() {
             <Card className="w-full max-w-md">
                 <CardHeader className="text-center">
                     <div className="mx-auto mb-4">
-                        <Logo className="h-12 w-12 text-primary" />
+                        <BrainCircuit className="h-12 w-12 text-primary" />
                     </div>
                     <CardTitle className="text-2xl font-headline">Último Passo</CardTitle>
                     <CardDescription>Insira seu código de acesso para desbloquear seu conteúdo.</CardDescription>

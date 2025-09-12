@@ -6,12 +6,14 @@ import { signOut } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
-import { Logo } from '@/components/icons';
-import { LogOut } from 'lucide-react';
+import { LogOut, BrainCircuit } from 'lucide-react';
+import { useAuth } from '@/context/auth-context';
+import { Badge } from '@/components/ui/badge';
 
 export default function Header() {
     const router = useRouter();
     const { toast } = useToast();
+    const { userData } = useAuth();
 
     const handleLogout = async () => {
         try {
@@ -24,16 +26,23 @@ export default function Header() {
     };
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
                 <Link href="/home" className="flex items-center gap-2">
-                    <Logo className="h-6 w-6 text-primary" />
+                    <BrainCircuit className="h-6 w-6 text-primary" />
                     <span className="font-bold font-headline text-foreground">Arte da Persuasão</span>
                 </Link>
-                <Button variant="ghost" size="icon" onClick={handleLogout} className="rounded-full">
-                    <LogOut className="h-4 w-4" />
-                    <span className="sr-only">Sair</span>
-                </Button>
+                <div className="flex items-center gap-4">
+                     {userData?.acesso && (
+                        <Badge variant={userData.acesso === 'pro' ? 'default' : 'secondary'} className="capitalize bg-primary/20 text-primary border-primary/30">
+                            Acesso {userData.acesso}
+                        </Badge>
+                    )}
+                    <Button variant="ghost" size="icon" onClick={handleLogout} className="rounded-full">
+                        <LogOut className="h-4 w-4" />
+                        <span className="sr-only">Sair</span>
+                    </Button>
+                </div>
             </div>
         </header>
     );
