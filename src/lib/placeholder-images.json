@@ -1,3 +1,10 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "upsell-hero",
+      "description": "A vibrant image representing growth and success for the upsell page.",
+      "imageUrl": "https://picsum.photos/seed/rocket/1200/600",
+      "imageHint": "success growth"
+    }
+  ]
 }
