@@ -95,6 +95,15 @@ export default function CursoPage() {
                 </Card>
 
                 <Card className="overflow-hidden">
+                    <CardHeader className="p-0">
+                        <Image
+                            src="https://i.postimg.cc/K8SCRp5X/Chat-GPT-Image-12-de-set-de-2025-20-38-00.png"
+                            alt="Capa do Módulo Extra"
+                            width={1200}
+                            height={600}
+                            className="w-full h-auto object-cover"
+                        />
+                    </CardHeader>
                     <CardContent className="p-0">
                         <Accordion type="single" collapsible className="w-full">
                             <AccordionItem value="item-extra" className="border-0">
