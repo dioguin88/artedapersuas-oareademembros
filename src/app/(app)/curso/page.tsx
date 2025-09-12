@@ -7,6 +7,12 @@ import LockedContent from "@/components/locked-content";
 import FullPageLoader from "@/components/full-page-loader";
 import { FileText, Youtube, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const aulasModulo1 = [
     {
@@ -49,13 +55,13 @@ export default function CursoPage() {
                     </Badge>
                 )}
             </div>
-            
-            <div className="space-y-8">
-                <Card className="overflow-hidden">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><Youtube className="text-primary"/> MÓDULO 1 – Introdução à Persuasão Mental</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-0">
+
+            <Accordion type="single" collapsible className="w-full space-y-6">
+                <AccordionItem value="item-1" className="border rounded-lg overflow-hidden">
+                    <AccordionTrigger className="p-6 bg-secondary/30 hover:no-underline">
+                        <CardTitle className="flex items-center gap-2 text-left"><Youtube className="text-primary" /> MÓDULO 1 – Introdução à Persuasão Mental</CardTitle>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-0">
                         <div className="divide-y divide-border">
                             {aulasModulo1.map((aula, index) => (
                                 <div key={index} className="p-6 grid gap-4 sm:grid-cols-[1fr_auto] items-start">
@@ -69,36 +75,43 @@ export default function CursoPage() {
                                 </div>
                             ))}
                         </div>
-                    </CardContent>
-                </Card>
+                    </AccordionContent>
+                </AccordionItem>
 
                 {userData?.acesso === 'pro' ? (
                     <>
-                        <Card className="overflow-hidden animate-in fade-in-50 duration-500">
-                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2"><Youtube className="text-primary"/> Módulo 2: Técnicas Avançadas</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                               <div className="aspect-video w-full overflow-hidden rounded-lg border flex items-center justify-center bg-muted">
-                                    <p className="text-muted-foreground">Em breve...</p>
+                        <AccordionItem value="item-2" className="border rounded-lg overflow-hidden">
+                            <AccordionTrigger className="p-6 bg-secondary/30 hover:no-underline">
+                                <CardTitle className="flex items-center gap-2 text-left"><Youtube className="text-primary" /> Módulo 2: Técnicas Avançadas</CardTitle>
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <div className="p-6">
+                                    <div className="aspect-video w-full overflow-hidden rounded-lg border flex items-center justify-center bg-muted">
+                                        <p className="text-muted-foreground">Em breve...</p>
+                                    </div>
                                 </div>
-                            </CardContent>
-                        </Card>
-                        <Card className="overflow-hidden animate-in fade-in-50 duration-500 delay-100">
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-2"><FileText className="text-primary"/> Módulo 3: Folha de Dicas Exclusiva</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                               <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border flex items-center justify-center bg-muted">
-                                    <p className="text-muted-foreground">Em breve...</p>
+                            </AccordionContent>
+                        </AccordionItem>
+
+                        <AccordionItem value="item-3" className="border rounded-lg overflow-hidden">
+                            <AccordionTrigger className="p-6 bg-secondary/30 hover:no-underline">
+                                <CardTitle className="flex items-center gap-2 text-left"><FileText className="text-primary" /> Módulo 3: Folha de Dicas Exclusiva</CardTitle>
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <div className="p-6">
+                                    <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border flex items-center justify-center bg-muted">
+                                        <p className="text-muted-foreground">Em breve...</p>
+                                    </div>
                                 </div>
-                            </CardContent>
-                        </Card>
+                            </AccordionContent>
+                        </AccordionItem>
                     </>
                 ) : (
-                    <LockedContent />
+                    <div className="mt-8">
+                      <LockedContent />
+                    </div>
                 )}
-            </div>
+            </Accordion>
         </div>
     );
 }
