@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/auth-context";
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import LockedContent from "@/components/locked-content";
@@ -62,7 +63,16 @@ export default function CursoPage() {
                         <CardTitle className="flex items-center gap-2 text-left"><Youtube className="text-primary" /> MÓDULO 1 – Introdução à Persuasão Mental</CardTitle>
                     </AccordionTrigger>
                     <AccordionContent className="p-0">
-                        <div className="divide-y divide-border">
+                        <div className="p-6">
+                             <Image
+                                src="https://i.postimg.cc/FsjDnr0q/rea-de-Membros.png"
+                                alt="Capa do Módulo 1"
+                                width={1200}
+                                height={600}
+                                className="w-full h-auto rounded-lg object-cover mb-6"
+                            />
+                        </div>
+                        <div className="divide-y divide-border border-t">
                             {aulasModulo1.map((aula, index) => (
                                 <div key={index} className="p-6 grid gap-4 sm:grid-cols-[1fr_auto] items-start">
                                     <div className="space-y-1">
