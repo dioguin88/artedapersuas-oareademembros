@@ -7,7 +7,7 @@
 - Content Embedding: Embed videos and PDFs for course content display.
 - Gated Content Display: Dynamically show/hide course modules based on the user's access level in Firestore.
 - Upsell Redirection: Automatically redirect users attempting to access locked content to an upsell page.
-- Access Code Validation: The app verifies access codes on new accounts: "PRO", save acesso: "pro", "TESTE", save acesso: "teste".  If invalid, return an error.
+- Access Code Validation: The app verifies access codes on new accounts: 'PRO', save acesso: 'pro', 'TESTE', save acesso: 'teste'. If invalid, return an error.
 
 ## Style Guidelines:
 

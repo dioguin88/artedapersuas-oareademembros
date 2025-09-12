@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import LockedContent from "@/components/locked-content";
 import FullPageLoader from "@/components/full-page-loader";
-import { Youtube } from "lucide-react";
+import { FileText, Youtube } from "lucide-react";
 
 export default function CursoPage() {
     const { userData, loading } = useAuth();
@@ -45,23 +45,40 @@ export default function CursoPage() {
                 </Card>
 
                 {userData?.acesso === 'pro' ? (
-                    <Card className="overflow-hidden animate-in fade-in-50 duration-500">
-                         <CardHeader>
-                            <CardTitle className="flex items-center gap-2"><Youtube className="text-primary"/> Módulo 2: Advanced Techniques</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                           <div className="aspect-video w-full overflow-hidden rounded-lg border">
-                                <iframe
-                                    className="w-full h-full"
-                                    src="https://www.youtube.com/embed/L_LUpnjgPso"
-                                    title="YouTube video player"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                ></iframe>
-                            </div>
-                        </CardContent>
-                    </Card>
+                    <>
+                        <Card className="overflow-hidden animate-in fade-in-50 duration-500">
+                             <CardHeader>
+                                <CardTitle className="flex items-center gap-2"><Youtube className="text-primary"/> Módulo 2: Advanced Techniques</CardTitle>
+                            </Header>
+                            <CardContent>
+                               <div className="aspect-video w-full overflow-hidden rounded-lg border">
+                                    <iframe
+                                        className="w-full h-full"
+                                        src="https://www.youtube.com/embed/L_LUpnjgPso"
+                                        title="YouTube video player"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card className="overflow-hidden animate-in fade-in-50 duration-500 delay-100">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2"><FileText className="text-primary"/> Módulo 3: Exclusive Cheatsheet</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                               <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border">
+                                    <iframe
+                                        className="w-full h-full"
+                                        src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                                        title="PDF Viewer"
+                                        frameBorder="0"
+                                    ></iframe>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </>
                 ) : (
                     <LockedContent />
                 )}
