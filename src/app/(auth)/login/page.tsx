@@ -26,7 +26,7 @@ export default function LoginPage() {
                 <div className="mx-auto mb-4">
                     <Logo className="h-12 w-12 text-primary" />
                 </div>
-                <CardTitle className="text-2xl font-headline">Welcome to AccessAlly</CardTitle>
+                <CardTitle className="text-2xl font-headline">Bem Vindo A Arte da Persuasão</CardTitle>
                 <CardDescription>Sign in or create an account to continue</CardDescription>
             </CardHeader>
             <CardContent>
