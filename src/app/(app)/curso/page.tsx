@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import LockedContent from "@/components/locked-content";
 import FullPageLoader from "@/components/full-page-loader";
-import { FileText, Youtube, Video } from "lucide-react";
+import { FileText, Youtube, Video, Book } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
     Accordion,
@@ -88,6 +88,21 @@ export default function CursoPage() {
                                             </div>
                                         ))}
                                     </div>
+                                </AccordionContent>
+                            </AccordionItem>
+                        </Accordion>
+                    </CardContent>
+                </Card>
+
+                <Card className="overflow-hidden">
+                    <CardContent className="p-0">
+                        <Accordion type="single" collapsible className="w-full">
+                            <AccordionItem value="item-extra" className="border-0">
+                                <AccordionTrigger className="p-6 hover:no-underline" disabled>
+                                    <CardTitle className="flex items-center gap-2 text-left text-muted-foreground"><Book /> Módulo Extra – Técnicas Iniciais de Persuasão + Leitura de Expressão</CardTitle>
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <div className="p-6 pt-0 text-center text-muted-foreground">Em breve...</div>
                                 </AccordionContent>
                             </AccordionItem>
                         </Accordion>
