@@ -61,7 +61,7 @@ export default function CursoPage() {
                 <Card className="overflow-hidden">
                     <CardHeader className="p-0">
                         <Image
-                            src="https://i.postimg.cc/FsjDnr0q/rea-de-Membros.png"
+                            src="https://i.postimg.cc/nLtZfcWD/Chat-GPT-Image-12-de-set-de-2025-20-31-10.png"
                             alt="Capa do Módulo 1"
                             width={1200}
                             height={600}
