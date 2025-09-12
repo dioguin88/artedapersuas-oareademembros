@@ -5,7 +5,32 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import LockedContent from "@/components/locked-content";
 import FullPageLoader from "@/components/full-page-loader";
-import { FileText, Youtube } from "lucide-react";
+import { FileText, Youtube, Video } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const aulasModulo1 = [
+    {
+        title: "Aula 1: O que é Persuasão?",
+        description: "🧠 Leandro Karnal & Maytê Carvalho explicam o conceito central de persuasão de forma filosófica e social.",
+        link: "#"
+    },
+    {
+        title: "Aula 2: Como Falar de Forma Mais Convincente",
+        description: "🗣️ Princípios de oratória e postura que tornam sua comunicação mais poderosa.",
+        link: "#"
+    },
+    {
+        title: "Aula 3: 4 Técnicas de Persuasão que Influenciam Pessoas",
+        description: "🎯 Técnicas diretas, aplicáveis em qualquer conversa ou venda.",
+        link: "#"
+    },
+    {
+        title: "Aula 4: 10 Técnicas Rápidas para Melhorar sua Persuasão",
+        description: "🚀 Checklist final com hacks mentais e de linguagem para aumentar seu poder de influência.",
+        link: "#"
+    }
+];
+
 
 export default function CursoPage() {
     const { userData, loading } = useAuth();
@@ -28,18 +53,21 @@ export default function CursoPage() {
             <div className="space-y-8">
                 <Card className="overflow-hidden">
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2"><Youtube className="text-primary"/> Módulo 1: Fundamentos</CardTitle>
+                        <CardTitle className="flex items-center gap-2"><Youtube className="text-primary"/> MÓDULO 1 – Introdução à Persuasão Mental</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                        <div className="aspect-video w-full overflow-hidden rounded-lg border">
-                           <iframe
-                                className="w-full h-full"
-                                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                                title="YouTube video player"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            ></iframe>
+                    <CardContent className="p-0">
+                        <div className="divide-y divide-border">
+                            {aulasModulo1.map((aula, index) => (
+                                <div key={index} className="p-6 grid gap-4 sm:grid-cols-[1fr_auto] items-start">
+                                    <div className="space-y-1">
+                                        <h3 className="font-semibold flex items-center gap-2"><Video size={16} /> {aula.title}</h3>
+                                        <p className="text-muted-foreground text-sm">{aula.description}</p>
+                                    </div>
+                                    <Button asChild variant="outline" size="sm">
+                                        <a href={aula.link}>Assistir</a>
+                                    </Button>
+                                </div>
+                            ))}
                         </div>
                     </CardContent>
                 </Card>
@@ -51,15 +79,8 @@ export default function CursoPage() {
                                 <CardTitle className="flex items-center gap-2"><Youtube className="text-primary"/> Módulo 2: Técnicas Avançadas</CardTitle>
                             </CardHeader>
                             <CardContent>
-                               <div className="aspect-video w-full overflow-hidden rounded-lg border">
-                                    <iframe
-                                        className="w-full h-full"
-                                        src="https://www.youtube.com/embed/L_LUpnjgPso"
-                                        title="YouTube video player"
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    ></iframe>
+                               <div className="aspect-video w-full overflow-hidden rounded-lg border flex items-center justify-center bg-muted">
+                                    <p className="text-muted-foreground">Em breve...</p>
                                 </div>
                             </CardContent>
                         </Card>
@@ -68,13 +89,8 @@ export default function CursoPage() {
                                 <CardTitle className="flex items-center gap-2"><FileText className="text-primary"/> Módulo 3: Folha de Dicas Exclusiva</CardTitle>
                             </CardHeader>
                             <CardContent>
-                               <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border">
-                                    <iframe
-                                        className="w-full h-full"
-                                        src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
-                                        title="PDF Viewer"
-                                        frameBorder="0"
-                                    ></iframe>
+                               <div className="aspect-[4/3] w-full overflow-hidden rounded-lg border flex items-center justify-center bg-muted">
+                                    <p className="text-muted-foreground">Em breve...</p>
                                 </div>
                             </CardContent>
                         </Card>
