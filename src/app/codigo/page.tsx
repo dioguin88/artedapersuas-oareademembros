@@ -39,9 +39,11 @@ export default function CodigoPage() {
         setLoading(true);
 
         let acesso: 'pro' | 'teste' | '' = '';
-        if (codigo.trim().toUpperCase() === 'PRO') {
+        const codigoFormatado = codigo.trim().toUpperCase();
+
+        if (codigoFormatado === 'PERSUASAO-PRO-2025') {
             acesso = 'pro';
-        } else if (codigo.trim().toUpperCase() === 'TESTE') {
+        } else if (codigoFormatado === 'PERSUASAO-TSTR-2025') {
             acesso = 'teste';
         } else {
             toast({ variant: 'destructive', title: 'Código Inválido', description: 'Verifique seu código de acesso e tente novamente.' });
@@ -83,7 +85,7 @@ export default function CodigoPage() {
                     <div className="space-y-2">
                         <Input
                             id="codigo"
-                            placeholder="ex: PRO"
+                            placeholder="ex: PERSUASAO-PRO-2025"
                             value={codigo}
                             onChange={(e) => setCodigo(e.target.value)}
                             disabled={loading}
