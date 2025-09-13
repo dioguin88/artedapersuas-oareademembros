@@ -162,6 +162,11 @@ const pdfsPro = {
     },
 }
 
+type PdfInfo = {
+    title: string;
+    embedUrl: string;
+};
+
 type ProgressoModulo = {
     [key: string]: boolean;
 };
@@ -174,10 +179,31 @@ type ProgressoGeral = {
     modulo5?: ProgressoModulo;
 }
 
+const PdfModal = ({ pdfInfo, onClose }: { pdfInfo: PdfInfo, onClose: () => void }) => (
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
+        <div className="bg-zinc-900 rounded-lg overflow-hidden max-w-5xl w-full h-[90vh] relative shadow-2xl border border-yellow-500">
+            <button
+                className="absolute top-3 right-4 text-white text-2xl font-bold hover:text-yellow-400 transition z-10"
+                onClick={onClose}
+            >
+                ✕
+            </button>
+
+            <iframe
+                src={pdfInfo.embedUrl}
+                className="w-full h-full"
+                allow="fullscreen"
+                title={pdfInfo.title}
+            ></iframe>
+        </div>
+    </div>
+);
+
+
 export default function CursoPage() {
     const { user, userData, loading } = useAuth();
     const [progresso, setProgresso] = useState<ProgressoGeral>({});
-    const [pdfModalOpen, setPdfModalOpen] = useState(false);
+    const [activePdf, setActivePdf] = useState<PdfInfo | null>(null);
 
     useEffect(() => {
         if (!user) return;
@@ -243,7 +269,7 @@ export default function CursoPage() {
         aulas: typeof aulasModulo1;
         progressoModulo: { aulasConcluidas: number; progressoPercentual: number; };
         totalAulas: number;
-        pdfInfo?: { title: string; embedUrl: string; };
+        pdfInfo?: PdfInfo;
     }) => (
         <div className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden mb-6 border border-yellow-500">
             <Image
@@ -294,10 +320,8 @@ export default function CursoPage() {
                 </div>
                 {pdfInfo && (
                     <div className="text-center p-4">
-                       <Button asChild>
-                           <a href={pdfInfo.embedUrl} target="_blank" rel="noopener noreferrer">
-                                Abrir PDF em Tela Cheia
-                           </a>
+                       <Button onClick={() => setActivePdf(pdfInfo)}>
+                            Abrir PDF em Tela Cheia
                        </Button>
                         <p className="text-xs text-muted-foreground mt-2">
                             Material de apoio em PDF.
@@ -373,7 +397,7 @@ export default function CursoPage() {
                 )}
 
                 <hr className="border-t border-muted/20 my-6" />
-
+                
                 <div className="bg-zinc-900 rounded-xl border border-yellow-500 shadow-lg mb-6 overflow-hidden">
                     <Image
                         src="https://i.postimg.cc/65JNvQ91/Untitled-design.jpg"
@@ -395,7 +419,7 @@ export default function CursoPage() {
                         </p>
 
                         <button
-                        onClick={() => setPdfModalOpen(true)}
+                        onClick={() => setActivePdf({ title: "PDF – Técnicas de Persuasão", embedUrl: "https://gamma.app/embed/tihmtnjgfpd558i" })}
                         className="bg-yellow-500 text-black font-bold py-2 px-4 rounded hover:bg-yellow-400 transition"
                         >
                         Abrir PDF em Tela Cheia
@@ -403,26 +427,6 @@ export default function CursoPage() {
                     </div>
                 </div>
 
-                {pdfModalOpen && (
-                    <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
-                    <div className="bg-zinc-900 rounded-lg overflow-hidden max-w-5xl w-full h-[90vh] relative shadow-2xl border border-yellow-500">
-                        <button
-                        className="absolute top-3 right-4 text-white text-2xl font-bold hover:text-yellow-400 transition z-10"
-                        onClick={() => setPdfModalOpen(false)}
-                        >
-                        ✕
-                        </button>
-
-                        <iframe
-                        src="https://gamma.app/embed/tihmtnjgfpd558i"
-                        className="w-full h-full"
-                        allow="fullscreen"
-                        title="PDF – Técnicas de Persuasão"
-                        ></iframe>
-                    </div>
-                    </div>
-                )}
-                
                 {userData?.acesso === 'pro' && (
                     <div className="bg-zinc-900 rounded-xl shadow-lg p-6 border border-yellow-500 text-center">
                         <h2 className="text-white font-bold text-2xl mb-4 flex items-center justify-center gap-2">
@@ -432,23 +436,23 @@ export default function CursoPage() {
                             <div className="bg-secondary/30 rounded-lg p-4 space-y-3 overflow-hidden text-center">
                                 <Image src="https://i.postimg.cc/LXqQvGk8/Comunica-o-assertiva.png" alt="Capa do Mini Curso de Comunicação Assertiva" width={400} height={200} className="w-full h-auto object-cover rounded-md mb-3 inline-block" />
                                 <h3 className="text-lg font-semibold text-foreground">📘 Mini Curso de Comunicação Assertiva</h3>
-                                <Button asChild>
-                                    <a href="https://gamma.app/embed/kkyky04cjc4ipot" target="_blank" rel="noopener noreferrer">
-                                        Abrir PDF em Tela Cheia
-                                    </a>
+                                <Button onClick={() => setActivePdf({ title: 'Comunicação Assertiva', embedUrl: 'https://gamma.app/embed/kkyky04cjc4ipot'})}>
+                                    Abrir PDF em Tela Cheia
                                 </Button>
                             </div>
                             <div className="bg-secondary/30 rounded-lg p-4 space-y-3 overflow-hidden text-center">
                                 <Image src="https://i.postimg.cc/WbrLsqk1/Gatilhos-mentais.png" alt="Capa do Guia de Gatilhos Mentais" width={400} height={200} className="w-full h-auto object-cover rounded-md mb-3 inline-block" />
                                 <h3 className="text-lg font-semibold text-foreground">📙 Guia Prático de Gatilhos Mentais Avançados</h3>
-                                <Button asChild>
-                                    <a href="https://gamma.app/embed/xp2r7nd3p5n575f" target="_blank" rel="noopener noreferrer">
-                                        Abrir PDF em Tela Cheia
-                                    </a>
+                                <Button onClick={() => setActivePdf({ title: 'Guia Prático de Gatilhos Mentais Avançados', embedUrl: 'https://gamma.app/embed/xp2r7nd3p5n575f' })}>
+                                    Abrir PDF em Tela Cheia
                                 </Button>
                             </div>
                         </div>
                     </div>
+                )}
+                
+                {activePdf && (
+                    <PdfModal pdfInfo={activePdf} onClose={() => setActivePdf(null)} />
                 )}
 
                 <hr className="border-t border-muted/20 my-6" />
@@ -474,5 +478,7 @@ export default function CursoPage() {
         </div>
     );
 }
+
+    
 
     
