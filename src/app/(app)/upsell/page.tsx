@@ -55,7 +55,7 @@ export default function UpsellPage() {
                         <p className="text-muted-foreground">Pagamento único. Acesso vitalício.</p>
                         <Button size="lg" className="w-full rounded-2xl text-lg py-6 hover:brightness-110 transition-all transform hover:scale-105">
                             {/* Replace with your actual payment link */}
-                            <a href="#" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.ggcheckout.com/checkout/v2/CFyJgHWtmg8FpQNuncfw?utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=" target="_blank" rel="noopener noreferrer">
                                 Desbloquear Acesso Completo Agora
                             </a>
                         </Button>
