@@ -142,6 +142,24 @@ const aulasModulo5 = [
     }
 ];
 
+const pdfsPro = {
+    modulo2: {
+        title: "Desvende o Poder da Hipnose",
+        embedUrl: "https://gamma.app/embed/mpeb4bott56xoov"
+    },
+    modulo3: {
+        title: "Módulo 3: Presença de Autoridade",
+        embedUrl: "https://gamma.app/embed/61m4mlhd92pywv1"
+    },
+    modulo4: {
+        title: "Módulo 4: Scripts de Venda e Negociação",
+        embedUrl: "https://gamma.app/embed/rd003chsc002c9g"
+    },
+    modulo5: {
+        title: "Módulo 5: Guia de Aplicação Prática",
+        embedUrl: "https://gamma.app/embed/0d8l35us0yaceuh"
+    },
+}
 
 type ProgressoModulo = {
     [key: string]: boolean;
@@ -216,6 +234,7 @@ export default function CursoPage() {
         aulas,
         progressoModulo,
         totalAulas,
+        pdfInfo,
     }: {
         moduloId: keyof ProgressoGeral;
         titulo: string;
@@ -223,6 +242,7 @@ export default function CursoPage() {
         aulas: typeof aulasModulo1;
         progressoModulo: { aulasConcluidas: number; progressoPercentual: number; };
         totalAulas: number;
+        pdfInfo?: { title: string; embedUrl: string; };
     }) => (
         <div className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden mb-6 border border-yellow-500">
             <Image
@@ -271,6 +291,23 @@ export default function CursoPage() {
                         </details>
                     ))}
                 </div>
+                {pdfInfo && (
+                    <div className="p-4">
+                        <div className="rounded-lg overflow-hidden border border-zinc-700">
+                          <iframe src={pdfInfo.embedUrl}
+                            className="w-full h-[450px] border-none rounded-lg"
+                            allow="fullscreen"
+                            title={pdfInfo.title}>
+                          </iframe>
+                        </div>
+                        <p className="text-center text-sm text-muted-foreground mt-2">
+                            Caso o PDF não carregue corretamente,{' '}
+                            <a href={pdfInfo.embedUrl} target="_blank" rel="noopener noreferrer" className="text-yellow-400 underline">
+                              clique aqui para abrir em nova aba
+                            </a>.
+                        </p>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -356,6 +393,7 @@ export default function CursoPage() {
                             aulas={aulasModulo2}
                             progressoModulo={progressoModulo2}
                             totalAulas={aulasModulo2.length}
+                            pdfInfo={pdfsPro.modulo2}
                         />
                          <ModuloUI
                             moduloId="modulo3"
@@ -364,6 +402,7 @@ export default function CursoPage() {
                             aulas={aulasModulo3}
                             progressoModulo={progressoModulo3}
                             totalAulas={aulasModulo3.length}
+                            pdfInfo={pdfsPro.modulo3}
                         />
 
                          <ModuloUI
@@ -373,6 +412,7 @@ export default function CursoPage() {
                             aulas={aulasModulo4}
                             progressoModulo={progressoModulo4}
                             totalAulas={aulasModulo4.length}
+                            pdfInfo={pdfsPro.modulo4}
                         />
                          <ModuloUI
                             moduloId="modulo5"
@@ -381,6 +421,7 @@ export default function CursoPage() {
                             aulas={aulasModulo5}
                             progressoModulo={progressoModulo5}
                             totalAulas={aulasModulo5.length}
+                            pdfInfo={pdfsPro.modulo5}
                         />
                     </div>
                 ) : (
@@ -390,6 +431,3 @@ export default function CursoPage() {
         </div>
     );
 }
-
-    
-
