@@ -380,7 +380,8 @@ export default function CursoPage() {
                                         </a>
                                     </Button>
                                 </div>
-                                <div className="bg-secondary/30 rounded-lg p-4 space-y-3">
+                                <div className="bg-secondary/30 rounded-lg p-4 space-y-3 overflow-hidden">
+                                    <Image src="https://i.postimg.cc/WbrLsqk1/Gatilhos-mentais.png" alt="Capa do Guia de Gatilhos Mentais" width={400} height={200} className="w-full h-auto object-cover rounded-md mb-3" />
                                     <h3 className="text-lg font-semibold text-foreground">📙 Guia Prático de Gatilhos Mentais Avançados</h3>
                                     <Button asChild>
                                         <a href="#" target="_blank" rel="noopener noreferrer">
