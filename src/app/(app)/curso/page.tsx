@@ -47,6 +47,7 @@ type ProgressoModulo = {
 export default function CursoPage() {
     const { user, userData, loading } = useAuth();
     const [progresso, setProgresso] = useState<ProgressoModulo>({});
+    const [pdfModalOpen, setPdfModalOpen] = useState(false);
 
     useEffect(() => {
         if (!user) return;
@@ -75,7 +76,6 @@ export default function CursoPage() {
             } else {
                  await setDoc(progressoRef, { modulo1: { [aulaId]: novoStatus } });
             }
-            // O estado local será atualizado pelo onSnapshot
         } catch (error) {
             console.error("Erro ao marcar aula como concluída:", error);
         }
@@ -97,7 +97,7 @@ export default function CursoPage() {
             </div>
 
             <div className="space-y-6">
-                <Card className="bg-card rounded-xl shadow-lg overflow-hidden border border-primary">
+                <div className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden mb-6 border border-yellow-500">
                     <Image
                         src="https://i.postimg.cc/nLtZfcWD/Chat-GPT-Image-12-de-set-de-2025-20-31-10.png"
                         alt="Capa do Módulo 1"
@@ -106,7 +106,7 @@ export default function CursoPage() {
                         className="w-full h-auto max-h-[338px] object-cover transition-transform duration-300 hover:scale-105"
                     />
                     <div className="p-4">
-                        <CardTitle className="flex items-center gap-2 text-xl mb-4"><Youtube className="text-primary" /> MÓDULO 1 – Introdução à Persuasão Mental</CardTitle>
+                        <h2 className="text-white font-bold text-xl mb-4"><Youtube className="inline text-primary mr-2" /> MÓDULO 1 – Introdução à Persuasão Mental</h2>
                         <div className="px-4 pb-2">
                              <p className="text-xs text-muted-foreground mb-2">
                                 {aulasConcluidas}/{totalAulas} aulas concluídas
@@ -145,38 +145,59 @@ export default function CursoPage() {
                             ))}
                         </div>
                     </div>
-                </Card>
+                </div>
                 
                 <hr className="border-t border-muted/20 my-6" />
 
-                <div className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden mb-6 border border-yellow-500">
-                  <Image src="https://i.postimg.cc/65JNvQ91/Untitled-design.jpg" alt="Capa do módulo extra" width={1200} height={338} className="w-full h-auto sm:max-h-[338px] object-cover transition-transform duration-300 hover:scale-105" />
+                <div className="bg-zinc-900 rounded-xl border border-yellow-500 shadow-lg mb-6 overflow-hidden">
+                    <Image
+                        src="https://i.postimg.cc/65JNvQ91/Untitled-design.jpg"
+                        alt="Módulo Extra"
+                        width={1200}
+                        height={338}
+                        className="w-full h-auto sm:max-h-[338px] object-cover transition-transform duration-300 hover:scale-105"
+                    />
 
-                  <div className="p-4">
-                    <h2 className="text-white font-bold text-xl mb-4">
-                      📘 Módulo Extra – Técnicas Iniciais de Persuasão + Leitura de Expressão
-                    </h2>
+                    <div className="p-4">
+                        <h2 className="text-white text-xl font-bold mb-2">
+                        📘 Módulo Extra – Técnicas Iniciais de Persuasão + Leitura de Expressão
+                        </h2>
 
-                    <p className="text-zinc-300 text-sm mb-4">
-                      Neste módulo especial, você terá acesso a um material exclusivo em PDF interativo. Explore técnicas práticas para
-                      ler expressões faciais, compreender linguagem corporal e dominar as bases da persuasão mental.
-                    </p>
+                        <p className="text-zinc-300 text-sm mb-4">
+                        Acesse um material interativo em PDF para dominar os fundamentos da
+                        leitura de expressões faciais, linguagem corporal e técnicas mentais
+                        de persuasão.
+                        </p>
 
-                    <div className="rounded-lg overflow-hidden border border-zinc-700">
-                      <iframe
-                        src="https://gamma.app/embed/tihmtnjgfpd558i"
-                        style={{ width: '100%', height: '450px' }}
-                        allow="fullscreen"
-                        title="Domine a Arte da Persuasão e Leitura de Expressões"
-                        className="w-full"
-                      ></iframe>
+                        <button
+                        onClick={() => setPdfModalOpen(true)}
+                        className="bg-yellow-500 text-black font-bold py-2 px-4 rounded hover:bg-yellow-400 transition"
+                        >
+                        Abrir PDF em Tela Cheia
+                        </button>
                     </div>
-
-                    <p className="text-right mt-3 text-xs text-zinc-500">
-                      Caso o PDF não carregue corretamente, <a href="https://gamma.app/embed/tihmtnjgfpd558i" target="_blank" rel="noopener noreferrer" className="text-yellow-400 underline">clique aqui para abrir em nova aba</a>.
-                    </p>
-                  </div>
                 </div>
+
+                {pdfModalOpen && (
+                    <div className="fixed inset-0 z-50 bg-black bg-opacity-80 flex justify-center items-center">
+                    <div className="bg-zinc-900 rounded-lg overflow-hidden max-w-5xl w-full h-[90vh] relative shadow-2xl border border-yellow-500">
+                        <button
+                        className="absolute top-3 right-4 text-white text-2xl font-bold hover:text-yellow-400 transition z-10"
+                        onClick={() => setPdfModalOpen(false)}
+                        >
+                        ✕
+                        </button>
+
+                        <iframe
+                        src="https://gamma.app/embed/tihmtnjgfpd558i"
+                        className="w-full h-full"
+                        allow="fullscreen"
+                        title="PDF – Técnicas de Persuasão"
+                        ></iframe>
+                    </div>
+                    </div>
+                )}
+
 
                 <hr className="border-t border-muted/20 my-6" />
 
@@ -198,6 +219,5 @@ export default function CursoPage() {
             </div>
         </div>
     );
-}
 
     
