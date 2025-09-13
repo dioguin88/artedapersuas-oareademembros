@@ -51,7 +51,7 @@ export default function UpsellPage() {
                     
                     <div className="rounded-2xl border bg-secondary/30 p-8 text-center space-y-4">
                         <h4 className="text-2xl font-bold">Oferta Por Tempo Limitado</h4>
-                        <p className="text-5xl font-bold tracking-tight text-primary">R$97</p>
+                        <p className="text-5xl font-bold tracking-tight text-primary">R$29,90</p>
                         <p className="text-muted-foreground">Pagamento único. Acesso vitalício.</p>
                         <Button size="lg" className="w-full rounded-2xl text-lg py-6 hover:brightness-110 transition-all transform hover:scale-105">
                             {/* Replace with your actual payment link */}
