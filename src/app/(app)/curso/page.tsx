@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import LockedContent from "@/components/locked-content";
 import FullPageLoader from "@/components/full-page-loader";
 import { FileText, Youtube, Video, Book, ChevronDown, Check, Star } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { doc, onSnapshot, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Progress } from "@/components/ui/progress";
@@ -194,11 +194,103 @@ const PdfModal = ({ pdfInfo, onClose }: { pdfInfo: PdfInfo, onClose: () => void 
                 className="w-full h-full"
                 allow="fullscreen"
                 title={pdfInfo.title}
+                loading="lazy"
             ></iframe>
         </div>
     </div>
 );
+PdfModal.displayName = 'PdfModal';
 
+
+type ModuloUIProps = {
+    moduloId: keyof ProgressoGeral;
+    titulo: string;
+    capaSrc: string;
+    aulas: typeof aulasModulo1;
+    progressoModulo: { aulasConcluidas: number; progressoPercentual: number; };
+    totalAulas: number;
+    pdfInfo?: PdfInfo;
+    progresso: ProgressoGeral;
+    marcarConcluida: (moduloId: keyof ProgressoGeral, aulaId: string) => void;
+    onPdfClick: (pdfInfo: PdfInfo) => void;
+};
+
+const ModuloUI = memo(({
+    moduloId,
+    titulo,
+    capaSrc,
+    aulas,
+    progressoModulo,
+    totalAulas,
+    pdfInfo,
+    progresso,
+    marcarConcluida,
+    onPdfClick,
+}: ModuloUIProps) => {
+    return (
+        <div className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden mb-6 border border-yellow-500">
+            <Image
+                src={capaSrc}
+                alt={`Capa do ${titulo}`}
+                width={1200}
+                height={338}
+                className="w-full h-auto max-h-[338px] object-cover transition-transform duration-300 hover:scale-105"
+            />
+            <div className="p-4">
+                <h2 className="text-white font-bold text-xl mb-4">{titulo}</h2>
+                <div className="px-4 pb-2">
+                    <p className="text-xs text-muted-foreground mb-2">
+                        {progressoModulo.aulasConcluidas}/{totalAulas} aulas concluídas
+                    </p>
+                    <Progress value={progressoModulo.progressoPercentual} className="h-2" />
+                </div>
+                <div className="space-y-2 p-2">
+                    {aulas.map((aula) => (
+                        <details key={aula.id} className="bg-secondary/30 p-4 rounded-xl group">
+                            <summary className="text-foreground font-semibold cursor-pointer list-none flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <Checkbox
+                                        id={`${moduloId}-${aula.id}`}
+                                        checked={!!progresso[moduloId]?.[aula.id]}
+                                        onCheckedChange={() => marcarConcluida(moduloId, aula.id)}
+                                        onClick={(e) => e.stopPropagation()}
+                                    />
+                                    <label htmlFor={`${moduloId}-${aula.id}`} className="cursor-pointer">{aula.title}</label>
+                                </div>
+                                <ChevronDown className="h-5 w-5 transition-transform duration-300 group-open:rotate-180" />
+                            </summary>
+                            <div className="mt-4 text-muted-foreground text-sm space-y-3">
+                                <p>{aula.description}</p>
+                                <div className="aspect-video">
+                                    <iframe
+                                        className="w-full h-full rounded"
+                                        src={aula.embedUrl}
+                                        title={aula.title}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        loading="lazy"
+                                    ></iframe>
+                                </div>
+                            </div>
+                        </details>
+                    ))}
+                </div>
+                {pdfInfo && (
+                    <div className="text-center p-4">
+                       <Button onClick={() => onPdfClick(pdfInfo)}>
+                            Abrir PDF em Tela Cheia
+                       </Button>
+                        <p className="text-xs text-muted-foreground mt-2">
+                            Material de apoio em PDF.
+                        </p>
+                    </div>
+                )}
+            </div>
+        </div>
+    )
+});
+ModuloUI.displayName = 'ModuloUI';
 
 export default function CursoPage() {
     const { user, userData, loading } = useAuth();
@@ -254,85 +346,6 @@ export default function CursoPage() {
         return <FullPageLoader />;
     }
 
-    const ModuloUI = ({
-        moduloId,
-        titulo,
-        capaSrc,
-        aulas,
-        progressoModulo,
-        totalAulas,
-        pdfInfo,
-    }: {
-        moduloId: keyof ProgressoGeral;
-        titulo: string;
-        capaSrc: string;
-        aulas: typeof aulasModulo1;
-        progressoModulo: { aulasConcluidas: number; progressoPercentual: number; };
-        totalAulas: number;
-        pdfInfo?: PdfInfo;
-    }) => (
-        <div className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden mb-6 border border-yellow-500">
-            <Image
-                src={capaSrc}
-                alt={`Capa do ${titulo}`}
-                width={1200}
-                height={338}
-                className="w-full h-auto max-h-[338px] object-cover transition-transform duration-300 hover:scale-105"
-            />
-            <div className="p-4">
-                <h2 className="text-white font-bold text-xl mb-4">{titulo}</h2>
-                <div className="px-4 pb-2">
-                    <p className="text-xs text-muted-foreground mb-2">
-                        {progressoModulo.aulasConcluidas}/{totalAulas} aulas concluídas
-                    </p>
-                    <Progress value={progressoModulo.progressoPercentual} className="h-2" />
-                </div>
-                <div className="space-y-2 p-2">
-                    {aulas.map((aula) => (
-                        <details key={aula.id} className="bg-secondary/30 p-4 rounded-xl group">
-                            <summary className="text-foreground font-semibold cursor-pointer list-none flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <Checkbox
-                                        id={`${moduloId}-${aula.id}`}
-                                        checked={!!progresso[moduloId]?.[aula.id]}
-                                        onCheckedChange={() => marcarConcluida(moduloId, aula.id)}
-                                        onClick={(e) => e.stopPropagation()}
-                                    />
-                                    <label htmlFor={`${moduloId}-${aula.id}`} className="cursor-pointer">{aula.title}</label>
-                                </div>
-                                <ChevronDown className="h-5 w-5 transition-transform duration-300 group-open:rotate-180" />
-                            </summary>
-                            <div className="mt-4 text-muted-foreground text-sm space-y-3">
-                                <p>{aula.description}</p>
-                                <div className="aspect-video">
-                                    <iframe
-                                        className="w-full h-full rounded"
-                                        src={aula.embedUrl}
-                                        title={aula.title}
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    ></iframe>
-                                </div>
-                            </div>
-                        </details>
-                    ))}
-                </div>
-                {pdfInfo && (
-                    <div className="text-center p-4">
-                       <Button onClick={() => setActivePdf(pdfInfo)}>
-                            Abrir PDF em Tela Cheia
-                       </Button>
-                        <p className="text-xs text-muted-foreground mt-2">
-                            Material de apoio em PDF.
-                        </p>
-                    </div>
-                )}
-            </div>
-        </div>
-    );
-
-
     return (
         <div className="container max-w-3xl py-12 px-4">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
@@ -348,6 +361,9 @@ export default function CursoPage() {
                     aulas={aulasModulo1}
                     progressoModulo={progressoModulo1}
                     totalAulas={aulasModulo1.length}
+                    progresso={progresso}
+                    marcarConcluida={marcarConcluida}
+                    onPdfClick={setActivePdf}
                 />
 
                 <hr className="border-t border-muted/20 my-6" />
@@ -362,6 +378,9 @@ export default function CursoPage() {
                             progressoModulo={progressoModulo2}
                             totalAulas={aulasModulo2.length}
                             pdfInfo={pdfsPro.modulo2}
+                            progresso={progresso}
+                            marcarConcluida={marcarConcluida}
+                            onPdfClick={setActivePdf}
                         />
                          <ModuloUI
                             moduloId="modulo3"
@@ -371,6 +390,9 @@ export default function CursoPage() {
                             progressoModulo={progressoModulo3}
                             totalAulas={aulasModulo3.length}
                             pdfInfo={pdfsPro.modulo3}
+                            progresso={progresso}
+                            marcarConcluida={marcarConcluida}
+                            onPdfClick={setActivePdf}
                         />
 
                          <ModuloUI
@@ -381,6 +403,9 @@ export default function CursoPage() {
                             progressoModulo={progressoModulo4}
                             totalAulas={aulasModulo4.length}
                             pdfInfo={pdfsPro.modulo4}
+                            progresso={progresso}
+                            marcarConcluida={marcarConcluida}
+                            onPdfClick={setActivePdf}
                         />
                          <ModuloUI
                             moduloId="modulo5"
@@ -390,6 +415,9 @@ export default function CursoPage() {
                             progressoModulo={progressoModulo5}
                             totalAulas={aulasModulo5.length}
                             pdfInfo={pdfsPro.modulo5}
+                            progresso={progresso}
+                            marcarConcluida={marcarConcluida}
+                            onPdfClick={setActivePdf}
                         />
                     </div>
                 ) : (
@@ -477,8 +505,5 @@ export default function CursoPage() {
             </div>
         </div>
     );
-}
-
-    
 
     
