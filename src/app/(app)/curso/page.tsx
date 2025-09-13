@@ -463,7 +463,7 @@ export default function CursoPage() {
                     />
                     <div className="p-6 text-center">
                         <Button asChild size="lg" variant="destructive" className="bg-red-600 hover:bg-red-700 transition hover:brightness-110 hover:animate-pulse">
-                            <a href="https://seulinkdeupsell.com" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.ggcheckout.com/checkout/v2/7xzRn6TFHoQrxCOghmRa" target="_blank" rel="noopener noreferrer">
                                 Quero Participar da Mentoria
                             </a>
                         </Button>
@@ -474,3 +474,5 @@ export default function CursoPage() {
         </div>
     );
 }
+
+    
