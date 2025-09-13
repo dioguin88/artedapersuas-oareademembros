@@ -422,27 +422,27 @@ export default function CursoPage() {
                     </div>
                     </div>
                 )}
-
+                
                 {userData?.acesso === 'pro' && (
                     <div className="bg-zinc-900 rounded-xl shadow-lg p-6 border border-yellow-500 text-center">
                         <h2 className="text-white font-bold text-2xl mb-4 flex items-center justify-center gap-2">
                             <Star className="text-yellow-400" /> Bônus Exclusivos (Acesso PRO)
                         </h2>
                         <div className="grid sm:grid-cols-2 gap-6">
-                            <div className="bg-secondary/30 rounded-lg p-4 space-y-3 overflow-hidden">
-                                <Image src="https://i.postimg.cc/LXqQvGk8/Comunica-o-assertiva.png" alt="Capa do Mini Curso de Comunicação Assertiva" width={400} height={200} className="w-full h-auto object-cover rounded-md mb-3" />
+                            <div className="bg-secondary/30 rounded-lg p-4 space-y-3 overflow-hidden text-center">
+                                <Image src="https://i.postimg.cc/LXqQvGk8/Comunica-o-assertiva.png" alt="Capa do Mini Curso de Comunicação Assertiva" width={400} height={200} className="w-full h-auto object-cover rounded-md mb-3 inline-block" />
                                 <h3 className="text-lg font-semibold text-foreground">📘 Mini Curso de Comunicação Assertiva</h3>
                                 <Button asChild>
-                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://gamma.app/embed/kkyky04cjc4ipot" target="_blank" rel="noopener noreferrer">
                                         Abrir PDF em Tela Cheia
                                     </a>
                                 </Button>
                             </div>
-                            <div className="bg-secondary/30 rounded-lg p-4 space-y-3 overflow-hidden">
-                                <Image src="https://i.postimg.cc/WbrLsqk1/Gatilhos-mentais.png" alt="Capa do Guia de Gatilhos Mentais" width={400} height={200} className="w-full h-auto object-cover rounded-md mb-3" />
+                            <div className="bg-secondary/30 rounded-lg p-4 space-y-3 overflow-hidden text-center">
+                                <Image src="https://i.postimg.cc/WbrLsqk1/Gatilhos-mentais.png" alt="Capa do Guia de Gatilhos Mentais" width={400} height={200} className="w-full h-auto object-cover rounded-md mb-3 inline-block" />
                                 <h3 className="text-lg font-semibold text-foreground">📙 Guia Prático de Gatilhos Mentais Avançados</h3>
                                 <Button asChild>
-                                    <a href="#" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://gamma.app/embed/xp2r7nd3p5n575f" target="_blank" rel="noopener noreferrer">
                                         Abrir PDF em Tela Cheia
                                     </a>
                                 </Button>
@@ -450,6 +450,7 @@ export default function CursoPage() {
                         </div>
                     </div>
                 )}
+
             </div>
         </div>
     );
