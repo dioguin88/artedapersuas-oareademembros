@@ -12,6 +12,7 @@ import { doc, onSnapshot, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 
 const aulasModulo1 = [
     {
@@ -292,19 +293,14 @@ export default function CursoPage() {
                     ))}
                 </div>
                 {pdfInfo && (
-                    <div className="p-4">
-                        <div className="rounded-lg overflow-hidden border border-zinc-700">
-                          <iframe src={pdfInfo.embedUrl}
-                            className="w-full h-[450px] border-none rounded-lg"
-                            allow="fullscreen"
-                            title={pdfInfo.title}>
-                          </iframe>
-                        </div>
-                        <p className="text-center text-sm text-muted-foreground mt-2">
-                            Caso o PDF não carregue corretamente,{' '}
-                            <a href={pdfInfo.embedUrl} target="_blank" rel="noopener noreferrer" className="text-yellow-400 underline">
-                              clique aqui para abrir em nova aba
-                            </a>.
+                    <div className="text-center p-4">
+                       <Button asChild>
+                           <a href={pdfInfo.embedUrl} target="_blank" rel="noopener noreferrer">
+                                Abrir PDF em Tela Cheia
+                           </a>
+                       </Button>
+                        <p className="text-xs text-muted-foreground mt-2">
+                            Material de apoio em PDF.
                         </p>
                     </div>
                 )}
@@ -431,3 +427,5 @@ export default function CursoPage() {
         </div>
     );
 }
+
+    
