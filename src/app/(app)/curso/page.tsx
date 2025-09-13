@@ -372,7 +372,8 @@ export default function CursoPage() {
                                 <Star className="text-yellow-400" /> Bônus Exclusivos (Acesso PRO)
                             </h2>
                             <div className="grid sm:grid-cols-2 gap-6">
-                                <div className="bg-secondary/30 rounded-lg p-4 space-y-3">
+                                <div className="bg-secondary/30 rounded-lg p-4 space-y-3 overflow-hidden">
+                                    <Image src="https://i.postimg.cc/LXqQvGk8/Comunica-o-assertiva.png" alt="Capa do Mini Curso de Comunicação Assertiva" width={400} height={200} className="w-full h-auto object-cover rounded-md mb-3" />
                                     <h3 className="text-lg font-semibold text-foreground">📘 Mini Curso de Comunicação Assertiva</h3>
                                     <Button asChild>
                                         <a href="#" target="_blank" rel="noopener noreferrer">
