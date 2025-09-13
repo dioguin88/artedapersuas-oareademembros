@@ -204,12 +204,19 @@ export default function CursoPage() {
                 {userData?.acesso === 'pro' ? (
                     <div className="space-y-6">
                         <Card className="bg-card rounded-xl shadow-lg overflow-hidden p-4">
-                            <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><Youtube /> Módulo 2: Técnicas Avançadas</CardTitle>
+                            <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><Youtube /> Módulo 2: Técnicas de Hipnose Conversacional</CardTitle>
                             <div className="p-4 pt-2 text-center text-muted-foreground">Em breve...</div>
                         </Card>
-
                         <Card className="bg-card rounded-xl shadow-lg overflow-hidden p-4">
-                             <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><FileText /> Módulo 3: Folha de Dicas Exclusiva</CardTitle>
+                             <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><Youtube /> Módulo 3: Como Criar Presença de Autoridade Instantânea</CardTitle>
+                             <div className="p-4 pt-2 text-center text-muted-foreground">Em breve...</div>
+                        </Card>
+                         <Card className="bg-card rounded-xl shadow-lg overflow-hidden p-4">
+                             <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><FileText /> Módulo 4: Scripts Prontos: Influência, Venda e Negociação</CardTitle>
+                             <div className="p-4 pt-2 text-center text-muted-foreground">Em breve...</div>
+                        </Card>
+                         <Card className="bg-card rounded-xl shadow-lg overflow-hidden p-4">
+                             <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><Video /> Módulo 5: Persuasão em Alta Performance (situações reais)</CardTitle>
                              <div className="p-4 pt-2 text-center text-muted-foreground">Em breve...</div>
                         </Card>
                     </div>
