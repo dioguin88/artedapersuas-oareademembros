@@ -40,13 +40,62 @@ const aulasModulo1 = [
     }
 ];
 
+const aulasModulo2 = [
+    {
+        id: "aula1",
+        title: "🧠 O QUE É HIPNOSE CONVERSACIONAL?",
+        description: "Descubra o fundamento da técnica para influenciar de forma sutil e poderosa.",
+        embedUrl: "https://www.youtube.com/embed/oZK4bjuS0Mg?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+    {
+        id: "aula2",
+        title: "✨ Hipnose Conversacional: 3 Simples Passos EXPLICADOS!",
+        description: "Um guia prático para aplicar a hipnose em qualquer conversa.",
+        embedUrl: "https://www.youtube.com/embed/5FVgPcgBUIw?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+    {
+        id: "aula3",
+        title: "💰 Hipnose Conversacional Para Vendas - Copywriting",
+        description: "Aprenda a usar gatilhos hipnóticos para criar textos de venda irresistíveis.",
+        embedUrl: "https://www.youtube.com/embed/URUrECR89_Q?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+    {
+        id: "aula4",
+        title: "🔧 Estratégias de PNL com Hipnose Conversacional",
+        description: "Combine PNL e Hipnose para potencializar sua capacidade de persuasão.",
+        embedUrl: "https://www.youtube.com/embed/ecmsswqVJig?rel=0&modestbranding=1&showinfo=0&controls=1"
+    }
+];
+
+const aulasModulo3 = [
+    {
+        id: "aula1",
+        title: "🔺 Triângulo da Persuasão: Ethos | Pathos | Logos",
+        description: "A base da retórica de Aristóteles para construir argumentos inabaláveis.",
+        embedUrl: "https://www.youtube.com/embed/ZHQdhtvcnBU?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+    {
+        id: "aula2",
+        title: "👑 As Armas da Persuasão – Autoridade",
+        description: "Como o gatilho da autoridade pode fazer as pessoas confiarem e seguirem suas ideias.",
+        embedUrl: "https://www.youtube.com/embed/TPdiUoa1HNc?rel=0&modestbranding=1&showinfo=0&controls=1"
+    }
+];
+
+
 type ProgressoModulo = {
     [key: string]: boolean;
 };
 
+type ProgressoGeral = {
+    modulo1?: ProgressoModulo;
+    modulo2?: ProgressoModulo;
+    modulo3?: ProgressoModulo;
+}
+
 export default function CursoPage() {
     const { user, userData, loading } = useAuth();
-    const [progresso, setProgresso] = useState<ProgressoModulo>({});
+    const [progresso, setProgresso] = useState<ProgressoGeral>({});
     const [pdfModalOpen, setPdfModalOpen] = useState(false);
 
     useEffect(() => {
@@ -55,40 +104,113 @@ export default function CursoPage() {
         const progressoRef = doc(db, "progresso", user.uid);
         const unsubscribe = onSnapshot(progressoRef, (docSnap) => {
             if (docSnap.exists()) {
-                setProgresso(docSnap.data().modulo1 || {});
+                setProgresso(docSnap.data());
             }
         });
 
         return () => unsubscribe();
     }, [user]);
 
-    const marcarConcluida = async (aulaId: string) => {
+    const marcarConcluida = async (moduloId: keyof ProgressoGeral, aulaId: string) => {
         if (!user) return;
         const progressoRef = doc(db, "progresso", user.uid);
         
-        const novoStatus = !progresso[aulaId];
-        const campo = `modulo1.${aulaId}`;
+        const statusAtual = progresso[moduloId]?.[aulaId] || false;
+        const novoStatus = !statusAtual;
+        const campo = `${moduloId}.${aulaId}`;
 
         try {
             const snap = await getDoc(progressoRef);
             if (snap.exists()) {
                  await updateDoc(progressoRef, { [campo]: novoStatus });
             } else {
-                 await setDoc(progressoRef, { modulo1: { [aulaId]: novoStatus } });
+                 await setDoc(progressoRef, { [moduloId]: { [aulaId]: novoStatus } });
             }
         } catch (error) {
             console.error("Erro ao marcar aula como concluída:", error);
         }
     };
+    
+    const calcularProgresso = (progressoModulo: ProgressoModulo | undefined, totalAulas: number) => {
+        const aulasConcluidas = progressoModulo ? Object.values(progressoModulo).filter(Boolean).length : 0;
+        const progressoPercentual = totalAulas > 0 ? (aulasConcluidas / totalAulas) * 100 : 0;
+        return { aulasConcluidas, progressoPercentual };
+    };
 
-    const aulasConcluidas = Object.values(progresso).filter(Boolean).length;
-    const totalAulas = aulasModulo1.length;
-    const progressoPercentual = totalAulas > 0 ? (aulasConcluidas / totalAulas) * 100 : 0;
-
+    const progressoModulo1 = calcularProgresso(progresso.modulo1, aulasModulo1.length);
+    const progressoModulo2 = calcularProgresso(progresso.modulo2, aulasModulo2.length);
+    const progressoModulo3 = calcularProgresso(progresso.modulo3, aulasModulo3.length);
 
     if (loading) {
         return <FullPageLoader />;
     }
+
+    const ModuloUI = ({
+        moduloId,
+        titulo,
+        capaSrc,
+        aulas,
+        progressoModulo,
+        totalAulas,
+    }: {
+        moduloId: keyof ProgressoGeral;
+        titulo: string;
+        capaSrc: string;
+        aulas: typeof aulasModulo1;
+        progressoModulo: { aulasConcluidas: number; progressoPercentual: number; };
+        totalAulas: number;
+    }) => (
+        <div className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden mb-6 border border-yellow-500">
+            <Image
+                src={capaSrc}
+                alt={`Capa do ${titulo}`}
+                width={1200}
+                height={338}
+                className="w-full h-auto max-h-[338px] object-cover transition-transform duration-300 hover:scale-105"
+            />
+            <div className="p-4">
+                <h2 className="text-white font-bold text-xl mb-4">{titulo}</h2>
+                <div className="px-4 pb-2">
+                    <p className="text-xs text-muted-foreground mb-2">
+                        {progressoModulo.aulasConcluidas}/{totalAulas} aulas concluídas
+                    </p>
+                    <Progress value={progressoModulo.progressoPercentual} className="h-2" />
+                </div>
+                <div className="space-y-2 p-2">
+                    {aulas.map((aula) => (
+                        <details key={aula.id} className="bg-secondary/30 p-4 rounded-xl group">
+                            <summary className="text-foreground font-semibold cursor-pointer list-none flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <Checkbox
+                                        id={`${moduloId}-${aula.id}`}
+                                        checked={!!progresso[moduloId]?.[aula.id]}
+                                        onCheckedChange={() => marcarConcluida(moduloId, aula.id)}
+                                        onClick={(e) => e.stopPropagation()}
+                                    />
+                                    <label htmlFor={`${moduloId}-${aula.id}`} className="cursor-pointer">{aula.title}</label>
+                                </div>
+                                <ChevronDown className="h-5 w-5 transition-transform duration-300 group-open:rotate-180" />
+                            </summary>
+                            <div className="mt-4 text-muted-foreground text-sm space-y-3">
+                                <p>{aula.description}</p>
+                                <div className="aspect-video">
+                                    <iframe
+                                        className="w-full h-full rounded"
+                                        src={aula.embedUrl}
+                                        title={aula.title}
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                        </details>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+
 
     return (
         <div className="container max-w-3xl py-12 px-4">
@@ -97,55 +219,15 @@ export default function CursoPage() {
             </div>
 
             <div className="space-y-6">
-                <div className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden mb-6 border border-yellow-500">
-                    <Image
-                        src="https://i.postimg.cc/nLtZfcWD/Chat-GPT-Image-12-de-set-de-2025-20-31-10.png"
-                        alt="Capa do Módulo 1"
-                        width={1200}
-                        height={338}
-                        className="w-full h-auto max-h-[338px] object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                    <div className="p-4">
-                        <h2 className="text-white font-bold text-xl mb-4"><Youtube className="inline text-primary mr-2" /> MÓDULO 1 – Introdução à Persuasão Mental</h2>
-                        <div className="px-4 pb-2">
-                             <p className="text-xs text-muted-foreground mb-2">
-                                {aulasConcluidas}/{totalAulas} aulas concluídas
-                            </p>
-                            <Progress value={progressoPercentual} className="h-2" />
-                        </div>
-                        <div className="space-y-2 p-2">
-                             {aulasModulo1.map((aula) => (
-                                <details key={aula.id} className="bg-secondary/30 p-4 rounded-xl group">
-                                    <summary className="text-foreground font-semibold cursor-pointer list-none flex items-center justify-between">
-                                        <div className="flex items-center gap-3">
-                                             <Checkbox
-                                                id={`cb-${aula.id}`}
-                                                checked={!!progresso[aula.id]}
-                                                onCheckedChange={() => marcarConcluida(aula.id)}
-                                                onClick={(e) => e.stopPropagation()} 
-                                             />
-                                            <label htmlFor={`cb-${aula.id}`} className="cursor-pointer">{aula.title}</label>
-                                        </div>
-                                        <ChevronDown className="h-5 w-5 transition-transform duration-300 group-open:rotate-180" />
-                                    </summary>
-                                    <div className="mt-4 text-muted-foreground text-sm space-y-3">
-                                        <p>{aula.description}</p>
-                                        <div className="aspect-video">
-                                            <iframe
-                                                className="w-full h-full rounded"
-                                                src={aula.embedUrl}
-                                                title={aula.title}
-                                                frameBorder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowFullScreen
-                                            ></iframe>
-                                        </div>
-                                    </div>
-                                </details>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+                
+                <ModuloUI
+                    moduloId="modulo1"
+                    titulo="MÓDULO 1 – Introdução à Persuasão Mental"
+                    capaSrc="https://i.postimg.cc/nLtZfcWD/Chat-GPT-Image-12-de-set-de-2025-20-31-10.png"
+                    aulas={aulasModulo1}
+                    progressoModulo={progressoModulo1}
+                    totalAulas={aulasModulo1.length}
+                />
                 
                 <hr className="border-t border-muted/20 my-6" />
 
@@ -203,14 +285,23 @@ export default function CursoPage() {
 
                 {userData?.acesso === 'pro' ? (
                     <div className="space-y-6">
-                        <Card className="bg-card rounded-xl shadow-lg overflow-hidden p-4">
-                            <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><Youtube /> Módulo 2: Técnicas de Hipnose Conversacional</CardTitle>
-                            <div className="p-4 pt-2 text-center text-muted-foreground">Em breve...</div>
-                        </Card>
-                        <Card className="bg-card rounded-xl shadow-lg overflow-hidden p-4">
-                             <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><Youtube /> Módulo 3: Como Criar Presença de Autoridade Instantânea</CardTitle>
-                             <div className="p-4 pt-2 text-center text-muted-foreground">Em breve...</div>
-                        </Card>
+                        <ModuloUI
+                            moduloId="modulo2"
+                            titulo="Módulo 2: Técnicas de Hipnose Conversacional"
+                            capaSrc="https://i.postimg.cc/K8SCRp5X/Chat-GPT-Image-12-de-set-de-2025-20-38-00.png"
+                            aulas={aulasModulo2}
+                            progressoModulo={progressoModulo2}
+                            totalAulas={aulasModulo2.length}
+                        />
+                         <ModuloUI
+                            moduloId="modulo3"
+                            titulo="Módulo 3: Como Criar Presença de Autoridade Instantânea"
+                            capaSrc="https://i.postimg.cc/65JNvQ91/Untitled-design.jpg"
+                            aulas={aulasModulo3}
+                            progressoModulo={progressoModulo3}
+                            totalAulas={aulasModulo3.length}
+                        />
+
                          <Card className="bg-card rounded-xl shadow-lg overflow-hidden p-4">
                              <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><FileText /> Módulo 4: Scripts Prontos: Influência, Venda e Negociação</CardTitle>
                              <div className="p-4 pt-2 text-center text-muted-foreground">Em breve...</div>
@@ -226,5 +317,6 @@ export default function CursoPage() {
             </div>
         </div>
     );
+}
 
     
