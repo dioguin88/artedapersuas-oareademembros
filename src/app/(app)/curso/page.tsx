@@ -97,7 +97,7 @@ export default function CursoPage() {
             </div>
 
             <div className="space-y-6">
-                <Card className="bg-card rounded-xl shadow-lg overflow-hidden">
+                <Card className="bg-card rounded-xl shadow-lg overflow-hidden border border-primary">
                     <Image
                         src="https://i.postimg.cc/nLtZfcWD/Chat-GPT-Image-12-de-set-de-2025-20-31-10.png"
                         alt="Capa do Módulo 1"
@@ -149,19 +149,34 @@ export default function CursoPage() {
                 
                 <hr className="border-t border-muted/20 my-6" />
 
-                <Card className="bg-card rounded-xl shadow-lg overflow-hidden">
-                     <Image
-                        src="https://i.postimg.cc/65JNvQ91/Untitled-design.jpg"
-                        alt="Capa do Módulo Extra"
-                        width={1200}
-                        height={338}
-                        className="w-full h-auto max-h-[338px] object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                     <div className="p-4">
-                        <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><Book /> Módulo Extra – Técnicas Iniciais de Persuasão + Leitura de Expressão</CardTitle>
-                        <div className="p-4 pt-2 text-center text-muted-foreground">Em breve...</div>
-                     </div>
-                </Card>
+                <div className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden mb-6 border border-yellow-500">
+                  <Image src="https://i.postimg.cc/65JNvQ91/Untitled-design.jpg" alt="Capa do módulo extra" width={1200} height={338} className="w-full h-auto sm:max-h-[338px] object-cover transition-transform duration-300 hover:scale-105" />
+
+                  <div className="p-4">
+                    <h2 className="text-white font-bold text-xl mb-4">
+                      📘 Módulo Extra – Técnicas Iniciais de Persuasão + Leitura de Expressão
+                    </h2>
+
+                    <p className="text-zinc-300 text-sm mb-4">
+                      Neste módulo especial, você terá acesso a um material exclusivo em PDF interativo. Explore técnicas práticas para
+                      ler expressões faciais, compreender linguagem corporal e dominar as bases da persuasão mental.
+                    </p>
+
+                    <div className="rounded-lg overflow-hidden border border-zinc-700">
+                      <iframe
+                        src="https://gamma.app/embed/tihmtnjgfpd558i"
+                        style={{ width: '100%', height: '450px' }}
+                        allow="fullscreen"
+                        title="Domine a Arte da Persuasão e Leitura de Expressões"
+                        className="w-full"
+                      ></iframe>
+                    </div>
+
+                    <p className="text-right mt-3 text-xs text-zinc-500">
+                      Caso o PDF não carregue corretamente, <a href="https://gamma.app/embed/tihmtnjgfpd558i" target="_blank" rel="noopener noreferrer" className="text-yellow-400 underline">clique aqui para abrir em nova aba</a>.
+                    </p>
+                  </div>
+                </div>
 
                 <hr className="border-t border-muted/20 my-6" />
 
@@ -184,3 +199,5 @@ export default function CursoPage() {
         </div>
     );
 }
+
+    
