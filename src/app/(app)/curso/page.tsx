@@ -79,6 +79,66 @@ const aulasModulo3 = [
         title: "👑 As Armas da Persuasão – Autoridade",
         description: "Como o gatilho da autoridade pode fazer as pessoas confiarem e seguirem suas ideias.",
         embedUrl: "https://www.youtube.com/embed/TPdiUoa1HNc?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+     {
+        id: "aula3",
+        title: "🌐 Sua Presença Digital Criando Autoridade",
+        description: "Aprenda a construir e projetar autoridade no ambiente online para se destacar.",
+        embedUrl: "https://www.youtube.com/embed/hhManfbWKZ8?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+    {
+        id: "aula4",
+        title: "⚖️ A Diferença entre Autoritária e Autoridade",
+        description: "Entenda a distinção crucial para liderar e influenciar de forma positiva e respeitada.",
+        embedUrl: "https://www.youtube.com/embed/yd7_KHtb7HY?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+    {
+        id: "aula5",
+        title: "🎤 Como se Comunicar com Autoridade",
+        description: "Técnicas de comunicação verbal e não verbal para transmitir confiança e credibilidade.",
+        embedUrl: "https://www.youtube.com/embed/rB9PVf-yEko?rel=0&modestbranding=1&showinfo=0&controls=1"
+    }
+];
+
+const aulasModulo4 = [
+    {
+        id: "aula1",
+        title: "✍️ Scripts de Vendas que Multiplicam Sua Conversão",
+        description: "Modelos prontos e adaptáveis de scripts para abordar clientes e fechar mais vendas.",
+        embedUrl: "https://www.youtube.com/embed/qTkXjbsQJ4Q?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+    {
+        id: "aula2",
+        title: "📞 4 passos para criar um script de cobrança ativa",
+        description: "Aprenda a estruturar uma abordagem de cobrança eficaz e profissional, mantendo o bom relacionamento.",
+        embedUrl: "https://www.youtube.com/embed/rZR7q331vKE?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+    {
+        id: "aula3",
+        title: "📱 Script de Vendas Para WhatsApp Poderoso",
+        description: "Domine a arte de vender pelo WhatsApp com um roteiro que gera conversas e conversões.",
+        embedUrl: "https://www.youtube.com/embed/Sx4ghv7h_HM?rel=0&modestbranding=1&showinfo=0&controls=1"
+    }
+];
+
+const aulasModulo5 = [
+    {
+        id: "aula1",
+        title: "🏆 Os Segredos da Alta Performance",
+        description: "Insights de um especialista para alcançar o máximo de seu potencial pessoal e profissional.",
+        embedUrl: "https://www.youtube.com/embed/pZN7K6_lSVI?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+    {
+        id: "aula2",
+        title: "🤝 O Poder das Equipes de Alta Performance",
+        description: "Como construir, motivar e liderar equipes que entregam resultados extraordinários.",
+        embedUrl: "https://www.youtube.com/embed/UZqwtkKkoGE?rel=0&modestbranding=1&showinfo=0&controls=1"
+    },
+    {
+        id: "aula3",
+        title: "🚀 Palestra “Alta Performance: como alcançar a sua?”",
+        description: "Uma palestra inspiradora com estratégias práticas para você elevar seu desempenho em todas as áreas da vida.",
+        embedUrl: "https://www.youtube.com/embed/RPUsuQCbOww?rel=0&modestbranding=1&showinfo=0&controls=1"
     }
 ];
 
@@ -91,6 +151,8 @@ type ProgressoGeral = {
     modulo1?: ProgressoModulo;
     modulo2?: ProgressoModulo;
     modulo3?: ProgressoModulo;
+    modulo4?: ProgressoModulo;
+    modulo5?: ProgressoModulo;
 }
 
 export default function CursoPage() {
@@ -140,6 +202,8 @@ export default function CursoPage() {
     const progressoModulo1 = calcularProgresso(progresso.modulo1, aulasModulo1.length);
     const progressoModulo2 = calcularProgresso(progresso.modulo2, aulasModulo2.length);
     const progressoModulo3 = calcularProgresso(progresso.modulo3, aulasModulo3.length);
+    const progressoModulo4 = calcularProgresso(progresso.modulo4, aulasModulo4.length);
+    const progressoModulo5 = calcularProgresso(progresso.modulo5, aulasModulo5.length);
 
     if (loading) {
         return <FullPageLoader />;
@@ -302,14 +366,22 @@ export default function CursoPage() {
                             totalAulas={aulasModulo3.length}
                         />
 
-                         <Card className="bg-card rounded-xl shadow-lg overflow-hidden p-4">
-                             <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><FileText /> Módulo 4: Scripts Prontos: Influência, Venda e Negociação</CardTitle>
-                             <div className="p-4 pt-2 text-center text-muted-foreground">Em breve...</div>
-                        </Card>
-                         <Card className="bg-card rounded-xl shadow-lg overflow-hidden p-4">
-                             <CardTitle className="flex items-center gap-2 text-left text-xl text-muted-foreground"><Video /> Módulo 5: Persuasão em Alta Performance (situações reais)</CardTitle>
-                             <div className="p-4 pt-2 text-center text-muted-foreground">Em breve...</div>
-                        </Card>
+                         <ModuloUI
+                            moduloId="modulo4"
+                            titulo="Módulo 4: Scripts Prontos: Influência, Venda e Negociação"
+                            capaSrc="https://i.postimg.cc/K8SCRp5X/Chat-GPT-Image-12-de-set-de-2025-20-38-00.png"
+                            aulas={aulasModulo4}
+                            progressoModulo={progressoModulo4}
+                            totalAulas={aulasModulo4.length}
+                        />
+                         <ModuloUI
+                            moduloId="modulo5"
+                            titulo="Módulo 5: Persuasão em Alta Performance (situações reais)"
+                            capaSrc="https://i.postimg.cc/65JNvQ91/Untitled-design.jpg"
+                            aulas={aulasModulo5}
+                            progressoModulo={progressoModulo5}
+                            totalAulas={aulasModulo5.length}
+                        />
                     </div>
                 ) : (
                     <LockedContent />
@@ -320,3 +392,4 @@ export default function CursoPage() {
 }
 
     
+
