@@ -451,9 +451,26 @@ export default function CursoPage() {
                     </div>
                 )}
 
+                <hr className="border-t border-muted/20 my-6" />
+
+                <div className="bg-zinc-900 rounded-xl shadow-lg overflow-hidden mb-6 border border-red-500/50">
+                    <Image
+                        src="https://i.postimg.cc/dVPFCjYC/MENTORIA-PERSUAS-O-APLICADA-21-DIAS.png"
+                        alt="Mentoria Premium - Torne-se Imparável na Arte da Persuasão"
+                        width={800}
+                        height={450}
+                        className="w-full h-auto object-cover"
+                    />
+                    <div className="p-6 text-center">
+                        <Button asChild size="lg" variant="destructive" className="bg-red-600 hover:bg-red-700 transition hover:brightness-110 hover:animate-pulse">
+                            <a href="https://seulinkdeupsell.com" target="_blank" rel="noopener noreferrer">
+                                Quero Participar da Mentoria
+                            </a>
+                        </Button>
+                    </div>
+                </div>
+
             </div>
         </div>
     );
 }
-
-    
