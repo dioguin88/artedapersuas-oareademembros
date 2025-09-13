@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import LockedContent from "@/components/locked-content";
 import FullPageLoader from "@/components/full-page-loader";
-import { FileText, Youtube, Video, Book, ChevronDown, Check } from "lucide-react";
+import { FileText, Youtube, Video, Book, ChevronDown, Check, Star } from "lucide-react";
 import { useState, useEffect } from "react";
 import { doc, onSnapshot, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
@@ -367,6 +367,29 @@ export default function CursoPage() {
                             totalAulas={aulasModulo5.length}
                             pdfInfo={pdfsPro.modulo5}
                         />
+                        <div className="bg-zinc-900 rounded-xl shadow-lg p-6 border border-yellow-500 text-center">
+                            <h2 className="text-white font-bold text-2xl mb-4 flex items-center justify-center gap-2">
+                                <Star className="text-yellow-400" /> Bônus Exclusivos (Acesso PRO)
+                            </h2>
+                            <div className="grid sm:grid-cols-2 gap-6">
+                                <div className="bg-secondary/30 rounded-lg p-4 space-y-3">
+                                    <h3 className="text-lg font-semibold text-foreground">📘 Mini Curso de Comunicação Assertiva</h3>
+                                    <Button asChild>
+                                        <a href="#" target="_blank" rel="noopener noreferrer">
+                                            Abrir PDF em Tela Cheia
+                                        </a>
+                                    </Button>
+                                </div>
+                                <div className="bg-secondary/30 rounded-lg p-4 space-y-3">
+                                    <h3 className="text-lg font-semibold text-foreground">📙 Guia Prático de Gatilhos Mentais Avançados</h3>
+                                    <Button asChild>
+                                        <a href="#" target="_blank" rel="noopener noreferrer">
+                                            Abrir PDF em Tela Cheia
+                                        </a>
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 ) : (
                     <LockedContent />
@@ -426,3 +449,5 @@ export default function CursoPage() {
         </div>
     );
 }
+
+    
