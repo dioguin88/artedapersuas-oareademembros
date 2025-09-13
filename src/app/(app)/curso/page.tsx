@@ -352,7 +352,7 @@ export default function CursoPage() {
                         <ModuloUI
                             moduloId="modulo2"
                             titulo="Módulo 2: Técnicas de Hipnose Conversacional"
-                            capaSrc="https://i.postimg.cc/K8SCRp5X/Chat-GPT-Image-12-de-set-de-2025-20-38-00.png"
+                            capaSrc="https://i.postimg.cc/bYW3Y6xQ/M-dulo-2.png"
                             aulas={aulasModulo2}
                             progressoModulo={progressoModulo2}
                             totalAulas={aulasModulo2.length}
@@ -360,7 +360,7 @@ export default function CursoPage() {
                          <ModuloUI
                             moduloId="modulo3"
                             titulo="Módulo 3: Como Criar Presença de Autoridade Instantânea"
-                            capaSrc="https://i.postimg.cc/65JNvQ91/Untitled-design.jpg"
+                            capaSrc="https://i.postimg.cc/Mp85VvrH/M-dulo-3.png"
                             aulas={aulasModulo3}
                             progressoModulo={progressoModulo3}
                             totalAulas={aulasModulo3.length}
@@ -369,7 +369,7 @@ export default function CursoPage() {
                          <ModuloUI
                             moduloId="modulo4"
                             titulo="Módulo 4: Scripts Prontos: Influência, Venda e Negociação"
-                            capaSrc="https://i.postimg.cc/K8SCRp5X/Chat-GPT-Image-12-de-set-de-2025-20-38-00.png"
+                            capaSrc="https://i.postimg.cc/L6PvJzDG/M-dulo-4.png"
                             aulas={aulasModulo4}
                             progressoModulo={progressoModulo4}
                             totalAulas={aulasModulo4.length}
@@ -377,7 +377,7 @@ export default function CursoPage() {
                          <ModuloUI
                             moduloId="modulo5"
                             titulo="Módulo 5: Persuasão em Alta Performance (situações reais)"
-                            capaSrc="https://i.postimg.cc/65JNvQ91/Untitled-design.jpg"
+                            capaSrc="https://i.postimg.cc/y6kLHqZ1/M-dulo-5.png"
                             aulas={aulasModulo5}
                             progressoModulo={progressoModulo5}
                             totalAulas={aulasModulo5.length}
